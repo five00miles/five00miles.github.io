@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 概念String类型是字符串的对象包装类型123456var objectString = new String(&quot;hello world!&quot;);console.log( objectString.valueOf() );//hello world!console.log( objectString.toLocaleString() );//hello world!console.log(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js的引用类型之String类型">
+<meta property="og:url" content="http://yoursite.com/2018/02/22/js的引用类型之String类型/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="1. 概念String类型是字符串的对象包装类型123456var objectString = new String(&quot;hello world!&quot;);console.log( objectString.valueOf() );//hello world!console.log( objectString.toLocaleString() );//hello world!console.log(">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js的引用类型之String类型">
+<meta name="twitter:description" content="1. 概念String类型是字符串的对象包装类型123456var objectString = new String(&quot;hello world!&quot;);console.log( objectString.valueOf() );//hello world!console.log( objectString.toLocaleString() );//hello world!console.log(">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/22/js的引用类型之String类型/"/>
+
+
+
+
+
+  <title>js的引用类型之String类型 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/22/js的引用类型之String类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js的引用类型之String类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T17:30:16+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-概念"><a href="#1-概念" class="headerlink" title="1. 概念"></a>1. 概念</h1><p>String类型是字符串的对象包装类型<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objectString = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello world!"</span>);</span><br><span class="line"><span class="built_in">console</span>.log( objectString.valueOf() );<span class="comment">//hello world!</span></span><br><span class="line"><span class="built_in">console</span>.log( objectString.toLocaleString() );<span class="comment">//hello world!</span></span><br><span class="line"><span class="built_in">console</span>.log( objectString.toString() );<span class="comment">//hello world!</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log( objectString.length );<span class="comment">//12</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="2-String类型提供的方法"><a href="#2-String类型提供的方法" class="headerlink" title="2. String类型提供的方法"></a>2. String类型提供的方法</h1><p>用于辅助完成ECMAScript中字符串的解析和操作</p>
+<h2 id="2-1-字符方法"><a href="#2-1-字符方法" class="headerlink" title="2.1 字符方法"></a>2.1 字符方法</h2><p><code>charAt()  charCodeAt()  []</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"hello world!"</span>;</span><br><span class="line"><span class="built_in">console</span>.log( strValue.charAt(<span class="number">1</span>) );<span class="comment">//e</span></span><br><span class="line"><span class="built_in">console</span>.log( strValue.charCodeAt(<span class="number">1</span>) );<span class="comment">//101</span></span><br><span class="line"><span class="comment">//输出字符编码</span></span><br><span class="line"><span class="built_in">console</span>.log( strValue[<span class="number">1</span>] );<span class="comment">//e</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-2-字符串操作方法"><a href="#2-2-字符串操作方法" class="headerlink" title="2.2 字符串操作方法"></a>2.2 字符串操作方法</h2><h3 id="2-2-1-concat"><a href="#2-2-1-concat" class="headerlink" title="2.2.1 concat()"></a>2.2.1 <code>concat()</code></h3><p>用于将一个或者多个字符串拼接起来，返回拼接得到的新字符串。</p>
+<blockquote>
+<p>实践中使用更多的还是加号操作符（+）</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">var</span> rst = strValue.concat(<span class="string">" world"</span>,<span class="string">"!"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(rst);<span class="comment">//"hello world!"</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-2-三个基于子字符串创建新字符串的方法slice-substr-substring"><a href="#2-2-2-三个基于子字符串创建新字符串的方法slice-substr-substring" class="headerlink" title="2.2.2 三个基于子字符串创建新字符串的方法slice() substr() substring()"></a>2.2.2 三个基于子字符串创建新字符串的方法<code>slice() substr() substring()</code></h3><p>三个方法都会返回被操作字符串的一个子字符串，而且也都接受一或两个参数。</p>
+<blockquote>
+<p>左闭右开</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一个参数指定子字符串的开始位置</span></span><br><span class="line"><span class="comment">//第二个参数不写默认到最后</span></span><br><span class="line"><span class="keyword">var</span> strValue = <span class="string">"hello world!"</span>;</span><br><span class="line"><span class="comment">//对于slice和substring，第二个参数表示子字符串到哪里结束</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.slice(<span class="number">3</span>, <span class="number">7</span>));<span class="comment">//"lo w"</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.substring(<span class="number">3</span>, <span class="number">7</span>));<span class="comment">//"lo w"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对于substr的第二个参数指定的则是返回的字符个数</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.substr(<span class="number">3</span>, <span class="number">7</span>));<span class="comment">//"lo worl"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//！！！！！！！！</span></span><br><span class="line"><span class="comment">//一旦传参有负数，则行为就很不一样了</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> str1Value = <span class="string">"0123456789"</span>;</span><br><span class="line"><span class="comment">//对于slice，是字符串长度加上负参数</span></span><br><span class="line"><span class="comment">//相当于slice(str1Value.length-4, str1Value.length-3)</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.slice(<span class="number">-4</span>));<span class="comment">//"6789"</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.slice(<span class="number">-4</span>,<span class="number">-3</span>));<span class="comment">//"6"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对于substr，是第一个参数加上字符串长度，第二个负参数设置为0</span></span><br><span class="line"><span class="comment">//相当于slice(str1Value.length-4)</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.substr(<span class="number">-4</span>));<span class="comment">//"6789"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下面语句相当于substr((str1Value.length-4,0)，即[6，0）,左大右小即为空字符串</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.substr(<span class="number">-4</span>,<span class="number">-3</span>));<span class="comment">//""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//对于substring，是把所有负值都转换为0</span></span><br><span class="line"><span class="comment">//相当于substring(0)</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.substring(<span class="number">-4</span>));<span class="comment">//"0123456789"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//下面语句相当于substring((0,0)，即[0，0）</span></span><br><span class="line"><span class="built_in">console</span>.log(str1Value.substring(<span class="number">-4</span>,<span class="number">-3</span>));<span class="comment">//""</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ie8以及ie8之前的<code>substr</code>在传递负值的情况下存在问题</p>
+</blockquote>
+<h3 id="2-2-3-字符串位置方法indexOf-lastIndexOf"><a href="#2-2-3-字符串位置方法indexOf-lastIndexOf" class="headerlink" title="2.2.3 字符串位置方法indexOf() lastIndexOf()"></a>2.2.3 字符串位置方法<code>indexOf() lastIndexOf()</code></h3><p>从一个字符串中搜索给定的字符串，然后返回子字符串的位置，如果找不到，则返回-1 <br><br>第一个参数是需要查找的字符串，第二个是从第几个开始查找，不设置默认为到最后</p>
+<p>区别是一个从前向后，一个从后向前。并且都是找到就停止，不会继续再找。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"hello world"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(strValue.indexOf(<span class="string">"o"</span>));<span class="comment">//4</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2-3-trim-方法"><a href="#2-2-3-trim-方法" class="headerlink" title="2.2.3 trim()方法"></a>2.2.3 <code>trim()方法</code></h3><p>ECMAScript5新定义的方法。会创建一个字符串的副本，删除前置以及后缀的所有空格，然后返回结果。</p>
+<p><code>trimLeft() trimRight()</code>需要高级游览器支持</p>
+<h3 id="2-2-4-字符串大小写转换方法"><a href="#2-2-4-字符串大小写转换方法" class="headerlink" title="2.2.4 字符串大小写转换方法"></a>2.2.4 字符串大小写转换方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"hello world!"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(strValue.toLocaleUpperCase());<span class="comment">//HELLO WORLD!</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.toUpperCase());<span class="comment">//HELLO WORLD!</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue);<span class="comment">//hello world!</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.toLocaleLowerCase());<span class="comment">//hello world!</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.toLowerCase());<span class="comment">//hello world!</span></span><br></pre></td></tr></table></figure>
+<p>在不知道代码将在哪个地区运行时，建议使用<code>toLocaleUpperCase() toLocaleLowerCase()</code></p>
+<h3 id="2-2-5-字符串的模式匹配方法"><a href="#2-2-5-字符串的模式匹配方法" class="headerlink" title="2.2.5 字符串的模式匹配方法"></a>2.2.5 字符串的模式匹配方法</h3><h4 id="2-2-5-1-match"><a href="#2-2-5-1-match" class="headerlink" title="2.2.5.1 match()"></a>2.2.5.1 <code>match()</code></h4><p>只接受一个参数，要么是正则表达式要么是RegExp对象<br><br>本质上与调用RegExp的exec()方法相同。</p>
+<h4 id="2-2-5-2-search"><a href="#2-2-5-2-search" class="headerlink" title="2.2.5.2 search()"></a>2.2.5.2 <code>search()</code></h4><p>返回索引值<br><br>参数与<code>match()</code>相同</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"cat, mat, aat"</span>;</span><br><span class="line"><span class="keyword">var</span> reg = <span class="regexp">/.at/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rst = strValue.match(reg);</span><br><span class="line"><span class="built_in">console</span>.log(rst);<span class="comment">//["cat", index: 0, input: "cat, mat, aat"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rst1 = strValue.search(reg);</span><br><span class="line"><span class="built_in">console</span>.log(rst1);<span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-2-5-3-replace"><a href="#2-2-5-3-replace" class="headerlink" title="2.2.5.3 replace()"></a>2.2.5.3 <code>replace()</code></h4><p>第一个参数可以是RegExp对象或者一个字符串；第二个参数可以是一个字符串或者一个函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"cat, mat, aat"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(strValue.replace(<span class="string">"at"</span>, <span class="string">"con"</span>));<span class="comment">//"ccon, mat, aat"</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue);<span class="comment">//"cat, mat, aat"</span></span><br><span class="line"><span class="built_in">console</span>.log(strValue.replace(<span class="regexp">/at/g</span>, <span class="string">"con"</span>));<span class="comment">//"ccon, mcon, acon"</span></span><br></pre></td></tr></table></figure></p>
+<p>如果第二次参数是字符串，还可以使用一些特殊的字符序列。<br>|字符序列|替换文本|<br>|:——|:——|<br>|$$|$|<br>|$&amp;|匹配整个模式的子字符串。与RegExp.lastMatch的值相同|<br>|$’|匹配的子字符串之前的子字符串。与RegExp.leftContext的值相同|<br>|$`|匹配的子字符串之后的子字符串。与RegExp.rightContext的值相同|<br>|$n|匹配第n个捕获组的子字符串，其中n=0~9。|<br>|$$|匹配第nn个捕获组的子字符串，nn=01~99。|</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strValue = <span class="string">"cat, mat, aat"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(strValue.replace(<span class="regexp">/(.at)/g</span>, <span class="string">"word($1)"</span>));<span class="comment">//"word(cat), word(mat), word(aat)"</span></span><br></pre></td></tr></table></figure>
+<p>第二次参数是函数的情况下，这个函数会被传递3个参数：</p>
+<ul>
+<li>模式的匹配项</li>
+<li>模式匹配项在字符串中的位置</li>
+<li>原始字符串</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">replace</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/[&lt;&gt;]/g</span>, <span class="function"><span class="keyword">function</span> (<span class="params">match, pos, str</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">switch</span>(match) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"&lt;"</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">"&amp;lt"</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"&gt;"</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">"&amp;gt"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(replace(<span class="string">"&lt;p&gt;"</span>));<span class="comment">//"&amp;ltp&amp;gt"</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-5-4-split"><a href="#2-2-5-4-split" class="headerlink" title="2.2.5.4 split()"></a>2.2.5.4 <code>split()</code></h3><p>基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个数组里。<br><br>第一个参数可以是RegExp对象或者一个字符串；第二个参数绝对数组的大小</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"red, blue, orange"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="string">","</span>, <span class="number">2</span>));<span class="comment">//["red", " blue"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据非逗号来分割，则red前面还有一个空字符串，orange后面也有</span></span><br><span class="line"><span class="built_in">console</span>.log(str.split(<span class="regexp">/[^\,]+/</span>));<span class="comment">//["", ",", ",", ""]</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-6-localeCompare"><a href="#2-2-6-localeCompare" class="headerlink" title="2.2.6 localeCompare()"></a>2.2.6 <code>localeCompare()</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"yellow"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(str.localeCompare(<span class="string">"brick"</span>));<span class="comment">//1</span></span><br><span class="line"><span class="comment">//yellow排在brick之后</span></span><br><span class="line"><span class="built_in">console</span>.log(str.localeCompare(<span class="string">"yellow"</span>));<span class="comment">//0</span></span><br><span class="line"><span class="comment">//一样</span></span><br><span class="line"><span class="built_in">console</span>.log(str.localeCompare(<span class="string">"zoo"</span>));<span class="comment">//-1</span></span><br><span class="line"><span class="comment">//yellow排在zoo之前</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-7-fromCharCode"><a href="#2-2-7-fromCharCode" class="headerlink" title="2.2.7 fromCharCode()"></a>2.2.7 <code>fromCharCode()</code></h3><p>接受一或者多个字符编码，把它们转换成一个字符串。<br><br>本质上和<code>charCodeAt()</code>相反<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>.fromCharCode(<span class="number">104</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>));<span class="comment">//"hello"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span>.charCodeAt(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>));<span class="comment">//"hello"</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="字符串方法合集"><a href="#字符串方法合集" class="headerlink" title="字符串方法合集"></a>字符串方法合集</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">参数个数</th>
+<th style="text-align:left">参数详解</th>
+<th style="text-align:left">是否影响被操作字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>charAt()  charCodeAt()</code></td>
+<td style="text-align:left">输出指定字符或者字符编码</td>
+<td style="text-align:left">一个</td>
+<td style="text-align:left">需要指定的位置从0开始</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>concat()</code></td>
+<td style="text-align:left">合并字符串</td>
+<td style="text-align:left">一个或多个</td>
+<td style="text-align:left">拼接的字符串</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>slice() substr() substring()</code></td>
+<td style="text-align:left">截取字符串</td>
+<td style="text-align:left">一个或两个</td>
+<td style="text-align:left">第一个指定字符串开始的位置 第二个表示到哪里结束（<code>substr()</code>的第二个是到第几个字符串结束）</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>indexOf() lastIndexOf()</code></td>
+<td style="text-align:left">查找字符串位置</td>
+<td style="text-align:left">一个或两个个</td>
+<td style="text-align:left">第一个数需要查找的字符串 第二个是从第几个开始</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>trim()</code></td>
+<td style="text-align:left">去除两边空格</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>toLocaleUpperCase() toUpperCase() toLocaleLowerCase() toLowerCase()</code></td>
+<td style="text-align:left">转换大小写</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>match() search()</code></td>
+<td style="text-align:left">前一个返回匹配值  后一个返回索引值</td>
+<td style="text-align:left">一个</td>
+<td style="text-align:left">正则表达式或者RegExp对象</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>replace()</code></td>
+<td style="text-align:left">替代匹配到的字符串</td>
+<td style="text-align:left">两个</td>
+<td style="text-align:left">第一个参数可以是RegExp对象或者一个字符串；第二个参数可以是一个字符串或者一个函数</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>split()</code></td>
+<td style="text-align:left">分割字符串</td>
+<td style="text-align:left">一个或两个</td>
+<td style="text-align:left">第一个参数可以是RegExp对象或者一个字符串；第二个参数绝对数组的大小</td>
+<td style="text-align:left">否</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>localeCompare()</code></td>
+<td style="text-align:left">比较字符串</td>
+<td style="text-align:left">一个</td>
+<td style="text-align:left">字符串</td>
+<td style="text-align:left">否</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/22/js的引用类型/" rel="next" title="js的引用类型">
+                <i class="fa fa-chevron-left"></i> js的引用类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/23/js的原型/" rel="prev" title="js的原型">
+                js的原型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概念"><span class="nav-text">1. 概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-String类型提供的方法"><span class="nav-text">2. String类型提供的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-字符方法"><span class="nav-text">2.1 字符方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-字符串操作方法"><span class="nav-text">2.2 字符串操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-concat"><span class="nav-text">2.2.1 concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-三个基于子字符串创建新字符串的方法slice-substr-substring"><span class="nav-text">2.2.2 三个基于子字符串创建新字符串的方法slice() substr() substring()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-字符串位置方法indexOf-lastIndexOf"><span class="nav-text">2.2.3 字符串位置方法indexOf() lastIndexOf()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-trim-方法"><span class="nav-text">2.2.3 trim()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-字符串大小写转换方法"><span class="nav-text">2.2.4 字符串大小写转换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-字符串的模式匹配方法"><span class="nav-text">2.2.5 字符串的模式匹配方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-1-match"><span class="nav-text">2.2.5.1 match()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-2-search"><span class="nav-text">2.2.5.2 search()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-5-3-replace"><span class="nav-text">2.2.5.3 replace()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-4-split"><span class="nav-text">2.2.5.4 split()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-localeCompare"><span class="nav-text">2.2.6 localeCompare()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-7-fromCharCode"><span class="nav-text">2.2.7 fromCharCode()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串方法合集"><span class="nav-text">字符串方法合集</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

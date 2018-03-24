@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 常用命名词整理1.1 布局123456789101112131415homepage--------------------------------首页subPage---------------------------------二级页面/子页面header/head-----------------------------头content/container---------------">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css命名规范">
+<meta property="og:url" content="http://yoursite.com/2018/03/22/css命名/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="1. 常用命名词整理1.1 布局123456789101112131415homepage--------------------------------首页subPage---------------------------------二级页面/子页面header/head-----------------------------头content/container---------------">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180324/m922aB83D7.png?imageslim">
+<meta property="og:updated_time" content="2018-03-24T15:30:52.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css命名规范">
+<meta name="twitter:description" content="1. 常用命名词整理1.1 布局123456789101112131415homepage--------------------------------首页subPage---------------------------------二级页面/子页面header/head-----------------------------头content/container---------------">
+<meta name="twitter:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180324/m922aB83D7.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/22/css命名/"/>
+
+
+
+
+
+  <title>css命名规范 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/22/css命名/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css命名规范</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T12:10:16+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-常用命名词整理"><a href="#1-常用命名词整理" class="headerlink" title="1. 常用命名词整理"></a>1. 常用命名词整理</h1><h2 id="1-1-布局"><a href="#1-1-布局" class="headerlink" title="1.1 布局"></a>1.1 布局</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">homepage--------------------------------首页</span><br><span class="line">subPage---------------------------------二级页面/子页面</span><br><span class="line">header/head-----------------------------头</span><br><span class="line">content/container-----------------------容器，内容，用于最外层</span><br><span class="line">wrapper---------------------------------页面外围控制整体布局宽度</span><br><span class="line">main------------------------------------页面主题</span><br><span class="line">nav-------------------------------------导航</span><br><span class="line">subnav----------------------------------二级导航</span><br><span class="line">menu------------------------------------菜单</span><br><span class="line">subMenu---------------------------------子菜单</span><br><span class="line">sideBar---------------------------------侧栏</span><br><span class="line">sideBar_a-------------------------------a边栏</span><br><span class="line">layout----------------------------------布局</span><br><span class="line">column----------------------------------栏目</span><br><span class="line">footer/foot-----------------------------尾</span><br></pre></td></tr></table></figure>
+<h2 id="1-2-导航"><a href="#1-2-导航" class="headerlink" title="1.2 导航"></a>1.2 导航</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">nav-------------------------------------导航</span><br><span class="line">mainNav---------------------------------主导航</span><br><span class="line">subNav----------------------------------子导航</span><br><span class="line">topNav----------------------------------顶导航</span><br><span class="line">sideNav---------------------------------边导航</span><br><span class="line">leftSideNav-----------------------------左导航</span><br><span class="line">rightSideNav----------------------------右导航</span><br><span class="line">menu------------------------------------菜单</span><br><span class="line">subMenu---------------------------------子菜单</span><br><span class="line">dorpMenu--------------------------------下拉菜单</span><br></pre></td></tr></table></figure>
+<h2 id="1-3-功能"><a href="#1-3-功能" class="headerlink" title="1.3 功能"></a>1.3 功能</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">logo------------------------------------标志</span><br><span class="line">banner----------------------------------广告</span><br><span class="line">title-----------------------------------标题</span><br><span class="line">summary---------------------------------摘要</span><br><span class="line">tag-------------------------------------标签</span><br><span class="line">login-----------------------------------登录</span><br><span class="line">loginBar--------------------------------登录条</span><br><span class="line">regsiter--------------------------------注册</span><br><span class="line">search----------------------------------搜索</span><br><span class="line">status----------------------------------状态</span><br><span class="line">scroll----------------------------------滚动</span><br><span class="line">tab-------------------------------------标签页</span><br><span class="line">current---------------------------------当前的</span><br><span class="line">icon------------------------------------图标</span><br><span class="line">msg-------------------------------------提示信息</span><br><span class="line">info------------------------------------信息</span><br><span class="line">rr/arrow--------------------------------箭头</span><br></pre></td></tr></table></figure>
+<h2 id="1-4-搜索框"><a href="#1-4-搜索框" class="headerlink" title="1.4 搜索框"></a>1.4 搜索框</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">searchInput--------------搜索输入框</span><br><span class="line">search-----------搜索</span><br><span class="line">search_output---------------搜索输出和搜索结果</span><br><span class="line">searchBar------------搜索条</span><br><span class="line">search_results----------------搜索结果</span><br></pre></td></tr></table></figure>
+<h2 id="1-5-css文件名"><a href="#1-5-css文件名" class="headerlink" title="1.5 css文件名"></a>1.5 css文件名</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">master.css,style.css    主要的</span><br><span class="line">module.css  模块</span><br><span class="line">base.css    基本共用</span><br><span class="line">layout.css  布局，版面</span><br><span class="line">themes.css  主题</span><br><span class="line">columns.css 专栏</span><br><span class="line">font.css    文字、字体</span><br><span class="line">forms.css   表单</span><br><span class="line">mend.css    补丁</span><br><span class="line">print.css   打印</span><br></pre></td></tr></table></figure>
+<h1 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h1><h2 id="2-1-对于具有可重用性的样式"><a href="#2-1-对于具有可重用性的样式" class="headerlink" title="2.1 对于具有可重用性的样式"></a>2.1 对于具有可重用性的样式</h2><p>分离公共样式，不要把所有的样式写在一个类里，尽可能的抽出可以复用的样式用类编写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .fl &#123;float:left;&#125;</span></span><br><span class="line"><span class="undefined">    .fontB &#123;font-weight:bold;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"fl fontB"</span>&gt;</span>举例<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样你就能对其他的标签也同时使用<code>.fl  .fontB</code>样式，不会过多的书写重复样式代码。</p>
+<p>当然这种时候的类命名就要<strong>简单</strong>，不能和html结构扯上任何关系，重点突出样式的含义，比如<code>.fontB</code>就是<code>font-weight:bold;</code>的简写</p>
+<blockquote>
+<p>网站通用的元素（按钮，导航，选项卡）的样式千万不能分离作为网站的css的样式库</p>
+</blockquote>
+<h2 id="2-2-对于具体样式"><a href="#2-2-对于具体样式" class="headerlink" title="2.2 对于具体样式"></a>2.2 对于具体样式</h2><p>借鉴<a href="https://en.bem.info/" target="_blank" rel="noopener"><strong>BEM思想</strong></a>的思想。BEM即块（block），元素（element），修饰符（modifier），是由Yandex团队提出的一种前端命名方法论。用于一个团队开发一个耗时的大项目。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.block</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.block__element</span> &#123;&#125;</span><br><span class="line"><span class="selector-class">.block--modifier</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>.block 代表了更高级别的抽象或组件。</li>
+<li>.block__element 代表.block的后代，用于形成一个完整的.block的整体。</li>
+<li>.block–modifier代表.block的不同状态或不同版本。</li>
+</ul>
+<p>既然我们知道了BEM的思想，但是我们就需要在写css的时候全程使用吗？答案是否定的。只有当你所写的样式明显的具有模块的感觉时候，可以尝试BEM。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>对于上述Html结构，我们根本不需要强行使用BEM思想，因为logo并不总是在header里面的，只是恰好而已，并且层次比较潜，没有必要。像下面就可以了。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"logo"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-3-网站通用小图标"><a href="#2-3-网站通用小图标" class="headerlink" title="2.3 网站通用小图标"></a>2.3 网站通用小图标</h2><p>在精灵图上的小图标可以不使用语义命名，根据排列方式命名，例如<code>icon00</code>，<code>icon01</code>。<br><img src="http://p287bv3zz.bkt.clouddn.com/blog/180324/m922aB83D7.png?imageslim" alt="mark"></p>
+<h1 id="3-选择器"><a href="#3-选择器" class="headerlink" title="3. 选择器"></a>3. 选择器</h1><h2 id="3-1-不要使用-important"><a href="#3-1-不要使用-important" class="headerlink" title="3.1 不要使用# !important"></a>3.1 不要使用<code>#</code> <code>!important</code></h2><p>对于样式，不要使用<code>#</code>，虽然<code>#</code>的选择权限更高，但是会和js钩子搞混，你会迷惑当初设置这个<code>#active</code>是用来设置样式了还是设置了js</p>
+<h2 id="3-2-性能消耗"><a href="#3-2-性能消耗" class="headerlink" title="3.2 性能消耗"></a>3.2 性能消耗</h2><p>性能消耗最大选择器应该是<code>*</code>和多 class 选择器(比如 <code>.foo.bar, .foo.bar.baz qux</code>)</p>
+<p>由于css的选择是从右向左搜索的，比如<code>.nav a{}</code>，这个就会先选择所有的a标签，但是去寻找包含a标签的<code>.nav</code></p>
+<p>在 Opera 和 WebKit 中 <code>[type=…&quot;]</code> 比 <code>input[type=&quot;…&quot;]</code> 更加耗时</p>
+<p>在 Opera 和 WebKit 中， border-radius 是最耗时的属性之一，甚至比 shadow 和 gradient 和耗时，要注意的是它不影响布局生成时间只影响 repaint 时间。transform性能也是很差</p>
+<p><strong>以上根据下面博客进行个人整理</strong>：<br><a href="https://zhuanlan.zhihu.com/p/26407119?group_id=837593211068362752" target="_blank" rel="noopener">决战BEM, 10个常见问题及其解决方案</a><br><a href="https://www.imooc.com/article/5219" target="_blank" rel="noopener">史上最全的HTML和CSS标签命名规则</a><br><a href="http://www.zhangxinxu.com/wordpress/2010/09/%E7%B2%BE%E7%AE%80%E9%AB%98%E6%95%88%E7%9A%84css%E5%91%BD%E5%90%8D%E5%87%86%E5%88%99%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">精简高效的CSS命名准则/方法</a><br><a href="http://www.zhangxinxu.com/wordpress/2010/07/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%AF%B9%E7%BD%91%E7%AB%99css%E8%BF%9B%E8%A1%8C%E6%9E%B6%E6%9E%84%E7%9A%84/" target="_blank" rel="noopener">我是如何对网站CSS进行架构的</a><br><a href="http://www.zhangxinxu.com/wordpress/2010/07/css%E6%A0%B7%E5%BC%8F%E5%88%86%E7%A6%BB%E4%B9%8B%E5%86%8D%E5%88%86%E7%A6%BB/" target="_blank" rel="noopener">CSS样式分离之再分离</a><br><a href="http://www.imweb.io/topic/5a5cc753a192c3b460fce3fc" target="_blank" rel="noopener">前端开发规范之命名规范、html规范、css规范、js规范</a><br><a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">CSS with BEM</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/HTML标签整理/" rel="next" title="html标签语义整理">
+                <i class="fa fa-chevron-left"></i> html标签语义整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-常用命名词整理"><span class="nav-text">1. 常用命名词整理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-布局"><span class="nav-text">1.1 布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-导航"><span class="nav-text">1.2 导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-功能"><span class="nav-text">1.3 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-搜索框"><span class="nav-text">1.4 搜索框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-css文件名"><span class="nav-text">1.5 css文件名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-思路"><span class="nav-text">2. 思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-对于具有可重用性的样式"><span class="nav-text">2.1 对于具有可重用性的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-对于具体样式"><span class="nav-text">2.2 对于具体样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-网站通用小图标"><span class="nav-text">2.3 网站通用小图标</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-选择器"><span class="nav-text">3. 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-不要使用-important"><span class="nav-text">3.1 不要使用# !important</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-性能消耗"><span class="nav-text">3.2 性能消耗</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

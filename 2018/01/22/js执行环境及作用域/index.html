@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 执行环境以及作用域的概念1.1 概念执行环境（简称环境）定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每一个执行环境都有一个与之关联的变量对象。环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在We">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js函数表达式之执行环境及作用域">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/js执行环境及作用域/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="1. 执行环境以及作用域的概念1.1 概念执行环境（简称环境）定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每一个执行环境都有一个与之关联的变量对象。环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在We">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180122/fa8Kefhk97.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180121/8GEihHbeJe.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180121/Gkh1bfli14.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180121/8eE7LhiiA9.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180121/ahE40DA1CH.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180308/kG9LHlKkea.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180123/eH323ghe1k.png?imageslim">
+<meta property="og:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180123/IhfgD5bEh9.png?imageslim">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js函数表达式之执行环境及作用域">
+<meta name="twitter:description" content="1. 执行环境以及作用域的概念1.1 概念执行环境（简称环境）定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每一个执行环境都有一个与之关联的变量对象。环境中定义的所有变量和函数都保存在这个对象中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。 全局执行环境是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在We">
+<meta name="twitter:image" content="http://p287bv3zz.bkt.clouddn.com/blog/180122/fa8Kefhk97.png?imageslim">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/22/js执行环境及作用域/"/>
+
+
+
+
+
+  <title>js函数表达式之执行环境及作用域 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/js执行环境及作用域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js函数表达式之执行环境及作用域</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T11:10:16+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-执行环境以及作用域的概念"><a href="#1-执行环境以及作用域的概念" class="headerlink" title="1. 执行环境以及作用域的概念"></a>1. 执行环境以及作用域的概念</h1><h2 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h2><p><strong>执行环境（简称环境）</strong>定义了变量或函数有权访问的其他数据，决定了它们各自的行为。每一个执行环境都有一个与之关联的<strong>变量对象</strong>。环境中定义的所有变量和函数都保存在这个<strong>对象</strong>中。虽然我们编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它。</p>
+<p><strong>全局执行环境</strong>是最外围的一个执行环境。根据ECMAScript实现所在的宿主环境不同，表示执行环境的对象也不一样。在Web游览器中，全局执行环境被认为是<code>window</code>对象，因此所有全局变量和杉树都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出——例如关闭网页或游览器——时才会被销毁）。</p>
+<p>每个函数都有自己的<strong>执行环境</strong>。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。ECMAScript程序中的执行流正是在这个方便的机制控制着。</p>
+<p>当代码在一个环境中执行时，会创建<strong>变量对象</strong>的一个<strong>作用域链</strong>。<strong>作用域链</strong>的用途：保证对<strong>执行环境</strong>有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在环境的变量对象。如果这个环境是函数，则将其<strong>活动对象</strong>作为<strong>变量对象</strong>。<strong>活动对象</strong>在最开始时只包含一个变量，即<code>arguments</code>对象（<strong>这个对象在全局环境中是不存在的）</strong>。<strong>作用域链</strong>中的下一个<strong>变量对象</strong>来自包含（外部）环境，而再一个<strong>变量对象</strong>则来自下一个包含环境。这样，一直延续到<strong>全局执行环境</strong>；<strong>全局执行环境</strong>的<strong>变量对象</strong>始终都是<strong>作用域链</strong>中的最后一个对象。</p>
+<p><strong>活动对象</strong>： 变量对象在真正执行时的另一种形式。未进入执行阶段之前，变量对象中的属性都不能访问！但是进入执行阶段之后，变量对象转变为了活动对象，里面的属性都能被访问了，然后开始进行执行阶段的操作。</p>
+<blockquote>
+<p>变量对象：<em>variable object</em>—–VO</p>
+</blockquote>
+<blockquote>
+<p>活动对象：<em>Activation object</em>—–AO</p>
+</blockquote>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Identifier" target="_blank" rel="noopener">标识符</a>解析是沿着<strong>作用域链</strong>一级一级地搜索标识符的过程。搜索过程始终从<strong>作用域链</strong>的前端开始，然后逐级地向后回溯，直到找到标识符位置（如果找不到标识符，通常会导致错误发生）。</p>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180122/fa8Kefhk97.png?imageslim" alt="作用域链" width="1000"><br><a id="more"></a></p>
+<h2 id="1-2-解释概念"><a href="#1-2-解释概念" class="headerlink" title="1.2 解释概念"></a>1.2 解释概念</h2><h3 id="1-2-1-变量对象-VO-的解释"><a href="#1-2-1-变量对象-VO-的解释" class="headerlink" title="1.2.1 变量对象(VO)的解释"></a>1.2.1 变量对象(VO)的解释</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">my</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>某个执行环境下（假设是A），就只有<strong>上述</strong>代码块，那么这个A环境有一个与之关联的变量对象(VO)，假设是obj，那么这个obj对象里面保存了<code>a</code>,<code>b</code>,<code>my()</code>等变量和函数。</p>
+<h2 id="1-2-2-作用域链的解释"><a href="#1-2-2-作用域链的解释" class="headerlink" title="1.2.2 作用域链的解释"></a>1.2.2 作用域链的解释</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行环境是window（最上层的执行对象）,因为ECMAScript执行环境是游览器</span></span><br><span class="line"><span class="comment">//代码在一个环境中执行时，会有一个与之关联的变量对象，并创建变量对象的一个作用域链</span></span><br><span class="line"><span class="comment">//假设这个是c1级作用域链</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(c);<span class="comment">//输出undefined;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//每一个函数，产生一个新的执行环境，假设就叫f1执行环境</span></span><br><span class="line">    <span class="comment">//这个就是c2作用域链</span></span><br><span class="line">    <span class="comment">//可以访问到变量a</span></span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//f2执行环境</span></span><br><span class="line">        <span class="comment">//这个就是c3作用域链</span></span><br><span class="line">        <span class="comment">//可以访问到变量a和b</span></span><br><span class="line">        <span class="keyword">var</span> c = <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内部环境可以通过作用域链访问所有的外部环境，但外部环境不能访问内部环境中的任何变量和函数。这些环境之间的联系时线性、有次序的。每个环境都可以向上搜索作用域链，以查询变量和函数名；但任何环境都不能通过向下搜索作用域链而进入另一个执行环境。</p>
+<p>如果想访问，可以使用<strong>闭包方法</strong></p>
+<p>作用域关系图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window(c1)        ^可</span><br><span class="line">|--a              |从</span><br><span class="line">|--f1()(c2)       |里</span><br><span class="line">    |--b          |向</span><br><span class="line">    |--f2()(c3)   |外</span><br><span class="line">        |--c      |找</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-词法分析"><a href="#2-词法分析" class="headerlink" title="2 词法分析"></a>2 词法分析</h1><p>js代码是自上而下执行的，JavaScript并不是传统的块级作用域，而是函数作用域。JavaScript引擎会在代码<strong>执行前</strong>进行词法分析，所以事实上，js运行分为此法分析和执行两个阶段。</p>
+<ul>
+<li>第一步：先分析<strong>参数</strong></li>
+<li>第二步：再分析<strong>变量声明</strong></li>
+<li>第三步：再分析<strong>函数声明</strong></li>
+</ul>
+<p>一个<strong>函数</strong>能使用的<strong>局部变量</strong>，就从上面的3步分析而来。注意，是局部变量！！！</p>
+<h2 id="2-1-具体步骤："><a href="#2-1-具体步骤：" class="headerlink" title="2.1 具体步骤："></a>2.1 具体步骤：</h2><ol>
+<li>函数运行前的一瞬间，生成活动对象(AO)</li>
+<li>分析参数<ol>
+<li>把声明的参数，形成AO的属性，值全是<code>undefined</code>，例如<code>AO.age = undefined</code></li>
+<li>接收实参，形成AO相应属性的值,，即覆盖掉undefined的值</li>
+</ol>
+</li>
+<li>分析变量<strong>！！！声明！！！(加了var的那个)</strong>。如<code>var age</code><ol>
+<li>如果AO上还没有<code>age</code>属性，则添加AO属性，值是<code>undefined</code></li>
+<li>如果AO上已经有<code>age</code>属性，则不做任何影响</li>
+</ol>
+</li>
+<li>分析函数声明，如<code>function foo(){}</code>,则把函数赋给AO.foo属性，如果此前foo属性已经存在，则覆盖<!-- more -->
+</li>
+</ol>
+<h2 id="2-2-举例"><a href="#2-2-举例" class="headerlink" title="2.2 举例"></a>2.2 举例</h2><p>例子一<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line">t(<span class="number">5</span>);<span class="comment">//输出5</span></span><br><span class="line">t();<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>词法分析</p>
+<p>词法分析阶段：</p>
+<ol>
+<li>生成AO={}</li>
+<li>分析函数参数<ol>
+<li>分析形参<code>age</code>,形成AO的属性，值为undfined,AO={age:undefined}</li>
+<li>分析实参<ol>
+<li>对于<code>t(5)</code>，接受实参，覆盖掉前面的undefined值，AO={age:5}</li>
+<li>对于<code>t()</code>，没有实参，AO={age:undefined}</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>函数没有变量声明</li>
+<li>函数没有函数声明</li>
+</ol>
+<p>执行过程阶段：</p>
+<ol>
+<li><code>t(5)</code>–&gt;AO={age:5},所以<code>console.log(age)</code>输出5</li>
+<li><code>t()</code>–&gt;AO={age:undefined}，所以输出undefined</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180121/8GEihHbeJe.png?imageslim" alt="" width="400px"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t2</span>(<span class="params">age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">99</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(age);</span><br><span class="line">&#125;</span><br><span class="line">t2(<span class="number">5</span>);<span class="comment">//99</span></span><br></pre></td></tr></table></figure>
+<p>词法分析</p>
+<p>词法分析阶段：</p>
+<ol>
+<li>形成AO={}</li>
+<li>分析函数参数<ol>
+<li>分析形参。AO={age:undefined}</li>
+<li><code>t2(5)</code>传实参，AO={age:5}</li>
+</ol>
+</li>
+<li>分析<code>var age</code>,发现AO已有age属性，不做任何影响</li>
+<li>没有函数声明</li>
+</ol>
+<p>执行过程分析：</p>
+<ol>
+<li><code>console.log(age)</code>,AO={age:5},输出5</li>
+<li>再接受<code>age=99</code>的赋值,形成AO={age:99},</li>
+<li><code>console.log(age)</code>输出99</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180121/Gkh1bfli14.png?imageslim" alt="" width="400"></p>
+<p>例子三<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t3</span>(<span class="params">greet</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> greet = <span class="string">'hello'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(greet);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">greet</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(greet);</span><br><span class="line">&#125;</span><br><span class="line">t3(<span class="literal">null</span>);</span><br></pre></td></tr></table></figure></p>
+<p>词法分析</p>
+<p>词法分析阶段：</p>
+<ol>
+<li>形成AO={}</li>
+<li>分析函数参数<ol>
+<li>分析形参<code>AO={greet:undefined}</code></li>
+<li><code>t3(null)</code>接收实参，<code>AO={greet:null}</code></li>
+</ol>
+</li>
+<li>分析greet变量声明<code>var greet</code>，发现AO已经有greet属性，不做任何影响</li>
+<li>分析greet函数声明，<code>AO.greet=function(){//do something}</code>,greet被覆盖成函数，<code>AO={greet:function(){//do something}}</code></li>
+</ol>
+<p>执行过程分析：</p>
+<ol>
+<li><code>greet=&#39;hello&#39;;</code>赋值，<code>AO={greet:&#39;hello&#39;}</code></li>
+<li><code>console.log(greet);</code>输出hello</li>
+<li><code>console.log(greet);</code>输出hello</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180121/8eE7LhiiA9.png?imageslim" alt="" width="400"></p>
+<p>例子四<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(b);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(b);</span><br><span class="line">    &#125;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">a(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></p>
+<p>词法分析</p>
+<p>词法分析阶段：</p>
+<ol>
+<li>形成AO={}</li>
+<li>分析函数参数<ol>
+<li>分析形参AO={b:undefined}</li>
+<li><code>a(1)</code>接受实参AO={b:1}</li>
+</ol>
+</li>
+<li>没有变量声明</li>
+<li>分析函数声明，AO={b:function(){console.log(b)}}</li>
+</ol>
+<p>执行过程分析：</p>
+<ol>
+<li><code>console.log(b)</code>输出<code>function(){console.log(b)}</code></li>
+<li><code>b();</code>–&gt;即执行<code>function b(){console.log(b);}</code>,在b函数内，找不到b参数，超上级函数a函数找，在a函数的<code>AO={b:function(){console.log(b)}}</code>找到b参数，则输出<code>function(){console.log(b)}</code></li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180121/ahE40DA1CH.png?imageslim" alt="" width="400"></p>
+<blockquote>
+<p>作用域链就是函数由内到外，产生的AO链</p>
+</blockquote>
+<p>补充：函数声明和函数表达式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数表达式</span></span><br><span class="line"><span class="keyword">var</span> f2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>区别：</p>
+<ul>
+<li>f1在词法分析时，就发挥作用；</li>
+<li>f2只有在执行阶段，才发挥作用。</li>
+</ul>
+<h1 id="3-延长作用域链"><a href="#3-延长作用域链" class="headerlink" title="3 延长作用域链"></a>3 延长作用域链</h1><blockquote>
+<p>执行环境的类型只有两种——全局和局部（函数）</p>
+</blockquote>
+<p>虽然执行环境的类型只有两种——全局和局部（函数）。但有些语句可以在<a href="javascript:;&quot;
+当前执行的代码所在环境的变量对象&quot;" target="_blank" rel="noopener">作用域链的前端</a>临时增加一个变量对象，该变量对象会在代码执行后被移除。在两种情况下会发生这种现象。具体来说，就是当执行流进入下列任何一个语句时，作用域链就会得到加长：</p>
+<ul>
+<li><code>try-catch</code>语句的<code>catch</code>块<ul>
+<li>会创建一个新的变量对象，其中包含的时被抛出的错误对象的声明</li>
+</ul>
+</li>
+<li><code>width</code>语句<ul>
+<li>会将制定的对象添加到作用域链中</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildUrl</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> qs = <span class="string">"?debug=true"</span>;</span><br><span class="line"></span><br><span class="line">    width(location) &#123;</span><br><span class="line">        <span class="keyword">var</span> url = href + qs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> url;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>width语句接受的是location对象，因此其变量对象中包含了location对象的所有属性和方法，而这个变量对象被添加到了作用域链的前端。</p>
+<h1 id="4-没有块级作用域"><a href="#4-没有块级作用域" class="headerlink" title="4 没有块级作用域"></a>4 没有块级作用域</h1><p>js中没有块级作用域的概念，和c、java等高级语言不同。再c、java等高级语言中，if内定义的变量会在if语句执行完毕后被销毁。但在js中，if语句中的变量声明会将变量添加到当前的执行环境。<strong>所以在使用if、for时候要格外小心。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt;= <span class="number">5</span>;i++) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在c、java等具有块级作用域的高级语言中，for和if也具有和function一样的作用域，会显示为undefined</span></span><br><span class="line">    <span class="comment">//但在js中，for和if是没有的。</span></span><br><span class="line">    <span class="comment">//js中执行环境的类型只有两种——全局和局部（函数）</span></span><br><span class="line">    <span class="built_in">console</span>.log(i);<span class="comment">//能获取i的值为6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-1-声明变量"><a href="#4-1-声明变量" class="headerlink" title="4.1 声明变量"></a>4.1 声明变量</h2><p>使用var声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的环境就是函数的局部环境；在width语句中，最接近的环境是函数环境。如果初始化变量时没有使用var声明，该变量会自动被添加到全局环境。</p>
+<blockquote>
+<p>不要狭隘的直接把不带var的变量声明当作全局声明</p>
+</blockquote>
+<h3 id="4-1-1-声明变量加var和不加var"><a href="#4-1-1-声明变量加var和不加var" class="headerlink" title="4.1.1 声明变量加var和不加var"></a>4.1.1 声明变量加<code>var</code>和不加<code>var</code></h3><ul>
+<li><code>var i=100;</code> -显式申明</li>
+<li><code>i=100;</code> -隐式申明</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">1</span>;</span><br><span class="line"><span class="comment">//事实上是对属性赋值操作</span></span><br></pre></td></tr></table></figure>
+<p>首先，它会尝试在当前作用域链中解析 num；<br> 如果在任何沿着当前作用域链中往上找到num，则会执行对num属性赋值；<br><br>如果没有找到num，它才会在全局对象（即当前作用域链的最顶层对象，如window对象）中创造num属性并赋值,最后变成了window下的一个属性，<code>window.num</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">t1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> d;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">t2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        d = <span class="number">5</span>;</span><br><span class="line">        e = <span class="number">6</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    t2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">t1();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(e);<span class="comment">//输出6</span></span><br><span class="line"><span class="built_in">console</span>.log(d);<span class="comment">//输出d is not defined</span></span><br></pre></td></tr></table></figure>
+<p>词法分析</p>
+<p>词法分析阶段：</p>
+<p>第一步：进行词法分析</p>
+<ol>
+<li>形成AO={}</li>
+<li>分析函数参数<ol>
+<li>没有形参。</li>
+<li>没有实参。</li>
+</ol>
+</li>
+<li>分析<code>var d</code>,<code>AO={d:undefined}</code></li>
+<li>分析函数声明<code>AO={t2:function(){d=5;e=6;}}</code></li>
+</ol>
+<p>执行过程分析：</p>
+<ol>
+<li><code>t2();</code>即执行<code>function(){d=5;e=6;}</code><ol>
+<li><code>d=5;</code>在t2作用域内并没有声明d，向上查找在t1作用域内找到<code>var d</code>。则t2函数形成的AO={d:5}</li>
+<li>执行到<code>e = 6</code>，在t2作用域中也找不到e,则向上寻找直至全局环境，都没找到。则在全局环境中声明e并把6赋值给e。即全局环境中的<code>AO={e:6}</code></li>
+</ol>
+</li>
+<li><code>console.log(e)</code>,全局作用域下<code>AO={e:6}</code>输出6</li>
+<li><code>console.log(d)</code>,全局作用域下并没有对d做定义，所以是d is not defined</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180308/kG9LHlKkea.png?imageslim" alt=""></p>
+<h2 id="4-2-查询标识符"><a href="#4-2-查询标识符" class="headerlink" title="4.2 查询标识符"></a>4.2 查询标识符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = <span class="string">"blue"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getColor</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(getColor());<span class="comment">//输出blue</span></span><br></pre></td></tr></table></figure>
+<p>执行<code>getColor()</code>时，为了确定<code>color</code>的值,</p>
+<ol>
+<li>首先搜索函数<code>getColor()</code>的变量对象，查找是否含有一个名为<code>color</code>的标识符，发现没有</li>
+<li>继续到下一个变量对象，对于上述例子，这个变量对象就是全局环境的变量对象，找到了一个名为<code>color</code>的标识符，搜索过程宣告结束</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180123/eH323ghe1k.png?imageslim" alt="" width="400"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> color = <span class="string">'blue'</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> color = <span class="string">'red'</span>;</span><br><span class="line">    <span class="keyword">return</span> color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getColor());<span class="comment">//输出red</span></span><br></pre></td></tr></table></figure>
+<p>执行<code>getColor()</code>时，为了确定<code>color</code>的值,</p>
+<ol>
+<li>首先搜索函数<code>getColor()</code>的变量对象，查找是否含有一个名为<code>color</code>的标识符，发现找到<code>color = red</code>,搜索停止</li>
+<li>不会继续下去了</li>
+</ol>
+<p><img src="http://p287bv3zz.bkt.clouddn.com/blog/180123/IhfgD5bEh9.png?imageslim" alt="" width="400"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/21/js的arguments/" rel="next" title="arguments">
+                <i class="fa fa-chevron-left"></i> arguments
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/22/js函数表达式之this/" rel="prev" title="this">
+                this <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-执行环境以及作用域的概念"><span class="nav-text">1. 执行环境以及作用域的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-概念"><span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-解释概念"><span class="nav-text">1.2 解释概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-变量对象-VO-的解释"><span class="nav-text">1.2.1 变量对象(VO)的解释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-2-作用域链的解释"><span class="nav-text">1.2.2 作用域链的解释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-词法分析"><span class="nav-text">2 词法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-具体步骤："><span class="nav-text">2.1 具体步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-举例"><span class="nav-text">2.2 举例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-延长作用域链"><span class="nav-text">3 延长作用域链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-没有块级作用域"><span class="nav-text">4 没有块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-声明变量"><span class="nav-text">4.1 声明变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-声明变量加var和不加var"><span class="nav-text">4.1.1 声明变量加var和不加var</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-查询标识符"><span class="nav-text">4.2 查询标识符</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

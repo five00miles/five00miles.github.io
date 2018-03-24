@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 原生引用类型引用类型的值（对象）是引用类型的一个实例。 引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。对象是某个特定引用类型的实例 引用类型也常被称为类,但并不合适。尽管ECMAScript从技术上讲是一门面向对象的语言，但是它不具备传统的面向对象语言所支持的类和接口等基本结构。 123var person = new People();//person  新实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js的引用类型">
+<meta property="og:url" content="http://yoursite.com/2018/02/22/js的引用类型/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="1. 原生引用类型引用类型的值（对象）是引用类型的一个实例。 引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。对象是某个特定引用类型的实例 引用类型也常被称为类,但并不合适。尽管ECMAScript从技术上讲是一门面向对象的语言，但是它不具备传统的面向对象语言所支持的类和接口等基本结构。 123var person = new People();//person  新实">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js的引用类型">
+<meta name="twitter:description" content="1. 原生引用类型引用类型的值（对象）是引用类型的一个实例。 引用类型有时候也被称为对象定义，因为它们描述的是一类对象所具有的属性和方法。对象是某个特定引用类型的实例 引用类型也常被称为类,但并不合适。尽管ECMAScript从技术上讲是一门面向对象的语言，但是它不具备传统的面向对象语言所支持的类和接口等基本结构。 123var person = new People();//person  新实">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/22/js的引用类型/"/>
+
+
+
+
+
+  <title>js的引用类型 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/22/js的引用类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js的引用类型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-22T17:10:16+08:00">
+                2018-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-原生引用类型"><a href="#1-原生引用类型" class="headerlink" title="1. 原生引用类型"></a>1. 原生引用类型</h1><p><a href="javascript:;&quot;是一种数据结构，用于将数据和功能组织在一起&quot;" target="_blank" rel="noopener">引用类型</a>的值（对象）是引用类型的一个实例。</p>
+<p>引用类型有时候也被称为<strong>对象定义</strong>，因为它们描述的是一类对象所具有的属性和方法。<br><br><strong>对象</strong>是某个特定引用类型的<strong>实例</strong></p>
+<p>引用类型也常被称为<strong>类</strong>,但并不合适。尽管ECMAScript从技术上讲是一门面向对象的语言，但是它不具备传统的面向对象语言所支持的类和接口等基本结构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> People();</span><br><span class="line"><span class="comment">//person  新实例保存在变量person中</span></span><br><span class="line"><span class="comment">//People 引用类型</span></span><br></pre></td></tr></table></figure>
+<p>上述代码创建了People引用类型的一个新实例<br><br>然后把该实例保存在了变量person中<br><br>而使用的构造函数是People,这个People只为新<a href="javascript:;&quot;对象是某个特定引用类型的实例&quot;" target="_blank" rel="noopener">对象</a>person定义了默认的属性和方法</p>
+<h1 id="2-Object类型"><a href="#2-Object类型" class="headerlink" title="2. Object类型"></a>2. <a href="http://five00miles.com/2018/01/29/js%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%B9%8BObject%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">Object类型</a></h1><h1 id="3-Array类型"><a href="#3-Array类型" class="headerlink" title="3. Array类型"></a>3. <a href="http://five00miles.com/2018/01/29/js%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%B9%8BArray%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">Array类型</a></h1><h1 id="4-Date类型"><a href="#4-Date类型" class="headerlink" title="4. Date类型"></a>4. <a href="http://five00miles.com/2018/02/23/js%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%B9%8BDate%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">Date类型</a></h1><h1 id="5-RegExp类型"><a href="#5-RegExp类型" class="headerlink" title="5. RegExp类型"></a>5. <a href="http://five00miles.com/2018/02/25/js%E7%9A%84%E6%AD%A3%E5%88%99%E4%BA%8C/" target="_blank" rel="noopener">RegExp类型</a></h1><h1 id="6-Function类型"><a href="#6-Function类型" class="headerlink" title="6. Function类型"></a>6. <a href="http://five00miles.com/2018/01/30/js%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%B9%8BFunction%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">Function类型</a></h1><h1 id="7-基本包装类型"><a href="#7-基本包装类型" class="headerlink" title="7. 基本包装类型"></a>7. 基本包装类型</h1><p>为了便于操作<strong>基本类型值</strong>，ECMAScript还提供了<strong>3个特殊</strong>的引用类型：Boolean、Number和String。这些类型与其他引用类型相似，但同时也具有与各自的基本类型相应的特殊行为。<br></p>
+<p>实际上，每当读取一个基本类型值的时候，后台就会创建一个对应的基本包装类型的对象，从而让我们能够调用一些方法来操作这些数据。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">"some text"</span>;</span><br><span class="line"><span class="keyword">var</span> s2 = s1.substring(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//这两行代码相当于</span></span><br><span class="line"><span class="comment">//1. 创建String类型的一个实例；</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"some text"</span>);</span><br><span class="line"><span class="comment">//2. 在实例上调用指定的方法；</span></span><br><span class="line"><span class="keyword">var</span> s2 = s1.substring(<span class="number">2</span>);</span><br><span class="line"><span class="comment">//3. 销毁这个实例</span></span><br><span class="line">s1 = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>引用类型与基本包装类型</strong>的主要<strong>区别</strong>就是对象的生存期。使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前都一直保存在内存中。而自动创建的基本包装类型的对象，则只存在于一行代码的执行瞬间，然后立即被销毁。<strong>这意味者我们不能再运行时为基本类型值添加属性和方法</strong>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s1 = <span class="string">"some text"</span>;</span><br><span class="line">s1.color = <span class="string">"red"</span>;<span class="comment">//这行代码执行完毕之后创建的String对象已经被销毁了</span></span><br><span class="line"><span class="comment">//下面这行代码执行的时候有创建了一个自己的新String对象，然后String对象没有color这个方法。</span></span><br><span class="line"><span class="built_in">console</span>.log(s1.color);<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-1-Boolean类型"><a href="#7-1-Boolean类型" class="headerlink" title="7.1 Boolean类型"></a>7.1 Boolean类型</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> falseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//是一个Boolean实例</span></span><br><span class="line"><span class="built_in">console</span>.log(falseObject);<span class="comment">//Boolean &#123;false&#125;</span></span><br><span class="line"><span class="comment">//布尔表达式中的所有对象都会被转成true</span></span><br><span class="line"><span class="keyword">var</span> result = falseObject &amp;&amp; <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> falseValue = <span class="literal">false</span>;<span class="comment">//是一个基本类型</span></span><br><span class="line">result = falseValue &amp;&amp; <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> falseObject);<span class="comment">//object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> falseValue);<span class="comment">//boolean</span></span><br><span class="line"><span class="built_in">console</span>.log(falseObject <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>);<span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(falseValue <span class="keyword">instanceof</span> <span class="built_in">Boolean</span>);<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最好永远不要使用Boolean对象</p>
+</blockquote>
+<h2 id="7-2-Number类型"><a href="#7-2-Number类型" class="headerlink" title="7.2 Number类型"></a>7.2 Number类型</h2><blockquote>
+<p>也不建议直接实例化Number对象</p>
+</blockquote>
+<h3 id="7-2-1-valueOf-toLocaleString-toString"><a href="#7-2-1-valueOf-toLocaleString-toString" class="headerlink" title="7.2.1 valueOf() toLocaleString() toString()"></a>7.2.1 <code>valueOf() toLocaleString() toString()</code></h3><p><code>toString(n)</code>可以用来返回n进制数值的<strong>字符串</strong>形式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numberObject = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//返回对象表示的基本类型的数值</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObject.valueOf());<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObject.valueOf());<span class="comment">//number</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//返回字符串形式的数值</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObject.toLocaleString());<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObject.toLocaleString());<span class="comment">//string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//返回字符串形式的数值</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObject.toString());<span class="comment">//10</span></span><br><span class="line"><span class="comment">//返回2进制的字符串形式</span></span><br><span class="line"><span class="built_in">console</span>.log(numberObject.toString(<span class="number">2</span>));<span class="comment">//1010</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObject.toString(<span class="number">8</span>));<span class="comment">//string</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberObject.toString());<span class="comment">//string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> numberValue = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(numberValue.toString(<span class="number">2</span>));<span class="comment">//1010</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> numberValue.toString(<span class="number">8</span>));<span class="comment">//string</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="7-2-2-toFixed-n"><a href="#7-2-2-toFixed-n" class="headerlink" title="7.2.2 toFixed(n)"></a>7.2.2 <code>toFixed(n)</code></h3><p>返回数值的n为精度的<strong>字符串</strong>表示<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(num.toFixed(<span class="number">3</span>));<span class="comment">//"10.000"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>ie8以及ie8之前的游览器对<code>{(-0.94,-0.5],[0.5,0.94)}</code>之间的值返回的是0,而不是-1或者1</p>
+</blockquote>
+<h3 id="7-2-3-toExponential-n"><a href="#7-2-3-toExponential-n" class="headerlink" title="7.2.3 toExponential(n)"></a>7.2.3 <code>toExponential(n)</code></h3><p>返回指定n为的小数位数的字符串<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(num.toExponential(<span class="number">1</span>));<span class="comment">//"9.9e+1"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> num.toExponential(<span class="number">1</span>));<span class="comment">//string</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="7-2-4-toPrecision-n"><a href="#7-2-4-toPrecision-n" class="headerlink" title="7.2.4 toPrecision(n)"></a>7.2.4 <code>toPrecision(n)</code></h3><p>返回数值的n位数的表示形式</p>
+<p>会根据要处理的数值决定到底是调用<code>toFixed()</code>还是调用<code>toExponential()</code>。<strong>这三个方法都可以通过向上或向下舍入，做到以最准确的形式来表示带有正确小数位的值。</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">99</span>;</span><br><span class="line"><span class="built_in">console</span>.log(num.toPrecision(<span class="number">1</span>));<span class="comment">//1e+2</span></span><br><span class="line"><span class="comment">//一位数无法精准的表示99，所以向上舍入为100</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num.toPrecision(<span class="number">2</span>));<span class="comment">//99</span></span><br><span class="line"><span class="built_in">console</span>.log(num.toPrecision(<span class="number">3</span>));<span class="comment">//99.0</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-3-String类型"><a href="#7-3-String类型" class="headerlink" title="7.3 String类型"></a>7.3 <a href="http://five00miles.com/2018/02/22/js%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E4%B9%8BString%E7%B1%BB%E5%9E%8B/" target="_blank" rel="noopener">String类型</a></h2><h1 id="8-单体内置对象"><a href="#8-单体内置对象" class="headerlink" title="8. 单体内置对象"></a>8. 单体内置对象</h1><ul>
+<li><code>Global</code></li>
+<li><code>Math</code></li>
+</ul>
+<h2 id="8-1-概念"><a href="#8-1-概念" class="headerlink" title="8.1 概念"></a>8.1 概念</h2><p>ECMA-262对内置对象的定义是：由ECMAScript实现提供的、不依赖于宿主环境的对象，这些对象在ECMAScript程序执行之前就已经存在了。<br><br>简而言之，它们在你使用之前已经实例化了。</p>
+<h2 id="8-2-Global"><a href="#8-2-Global" class="headerlink" title="8.2 Global"></a>8.2 <code>Global</code></h2><h3 id="8-2-1-URI编码方法"><a href="#8-2-1-URI编码方法" class="headerlink" title="8.2.1 URI编码方法"></a>8.2.1 URI编码方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uri = <span class="string">"http://www.baidu.com/home balue.html#12@1?1"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">encodeURI</span>(uri));</span><br><span class="line"><span class="comment">//console.log(decodeURI(uri));</span></span><br><span class="line"><span class="comment">//"http://www.baidu.com/home%20balue.html#12@1?1"</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">encodeURIComponent</span>(uri));</span><br><span class="line"><span class="comment">//console.log(decodeURIComponent(uri));</span></span><br><span class="line"><span class="comment">//"http%3A%2F%2Fwww.baidu.com%2Fhome%20balue.html%2312%401%3F1"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一般来说，我们使用<code>encodeURIComponent()</code>方法的时候比使用<code>encodeURI()</code>更多，因为实践中更常见的是对查询字符串参数而不是对基础URI进行编码</p>
+</blockquote>
+<p><code>escape()</code>和<code>unescape()</code>在ECMA-262第三版中已经被废弃，这两个方法只能正确的编码ASCII字符，不适合产品级的代码，不要使用。</p>
+<h3 id="8-2-2-eval-方法"><a href="#8-2-2-eval-方法" class="headerlink" title="8.2.2 eval()方法"></a>8.2.2 <code>eval()</code>方法</h3><p>只接受一个参数，即要执行的ECMAScript字符串<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"hello wordl!"</span>;</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">"console.log(str)"</span>);</span><br><span class="line"><span class="comment">//等同于!!!!!!</span></span><br><span class="line">varstr = <span class="string">"hello world!"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br></pre></td></tr></table></figure></p>
+<p><strong>严格模式</strong>下，在外部访问不到eval()中创建的任何变量或函数；为eval赋值也会导致错误。</p>
+<blockquote>
+<p><code>eval()</code>功能虽然强大，但是尽量别使用，尤其是在用它执行用户输入数据的情况下。否则可能会有恶意用户输入对你网站不利的代码（即代码注入）</p>
+</blockquote>
+<h3 id="8-2-3-Global对象的属性"><a href="#8-2-3-Global对象的属性" class="headerlink" title="8.2.3 Global对象的属性"></a>8.2.3 Global对象的属性</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:center">分割线</th>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">undefined</td>
+<td style="text-align:left">特殊值undefined</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">构造函数Date</td>
+</tr>
+<tr>
+<td style="text-align:left">NaN</td>
+<td style="text-align:left">特殊值NaN</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">RegExp</td>
+<td style="text-align:left">构造函数RegExp</td>
+</tr>
+<tr>
+<td style="text-align:left">Infinity</td>
+<td style="text-align:left">特殊值Infinity</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">Error</td>
+<td style="text-align:left">构造函数Error</td>
+</tr>
+<tr>
+<td style="text-align:left">Object</td>
+<td style="text-align:left">构造函数Object</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">EvalError</td>
+<td style="text-align:left">构造函数EvalError</td>
+</tr>
+<tr>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">构造函数Array</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">RangError</td>
+<td style="text-align:left">构造函数RangError</td>
+</tr>
+<tr>
+<td style="text-align:left">Function</td>
+<td style="text-align:left">构造函数Function</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">ReferenceError</td>
+<td style="text-align:left">构造函数ReferenceError</td>
+</tr>
+<tr>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">构造函数Boolean</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">SyntaxError</td>
+<td style="text-align:left">构造函数SyntaxError</td>
+</tr>
+<tr>
+<td style="text-align:left">String</td>
+<td style="text-align:left">构造函数String</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">TypeError</td>
+<td style="text-align:left">构造函数TypeError</td>
+</tr>
+<tr>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">构造函数Number</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">URIError</td>
+<td style="text-align:left">构造函数URIError</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-2-4-window对象"><a href="#8-2-4-window对象" class="headerlink" title="8.2.4 window对象"></a>8.2.4 window对象</h3><p>web游览器都是将全局对象作为window对象的一部分加以实现的。</p>
+<p>在没有给函数明确指定this值的情况下，this的值就是Global对象<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> global = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//返回的这个this就是global对象</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="8-3-Math对象"><a href="#8-3-Math对象" class="headerlink" title="8.3 Math对象"></a>8.3 Math对象</h2><h3 id="8-3-1-Math对象的属性"><a href="#8-3-1-Math对象的属性" class="headerlink" title="8.3.1 Math对象的属性"></a>8.3.1 Math对象的属性</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Math.E</td>
+<td style="text-align:left">常量e的值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.LNn</td>
+<td style="text-align:left">n的自然对数</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.LOGn</td>
+<td style="text-align:left">以n为底的对数</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.PI</td>
+<td style="text-align:left">π的值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.SQRTn_m</td>
+<td style="text-align:left">n/m的平方根</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.SQRTn</td>
+<td style="text-align:left">n的平方根</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-3-2-min-和max-方法"><a href="#8-3-2-min-和max-方法" class="headerlink" title="8.3.2 min()和max()方法"></a>8.3.2 min()和max()方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="built_in">Math</span>.max(<span class="number">3</span>, <span class="number">54</span>, <span class="number">32</span>, <span class="number">-2</span>);</span><br><span class="line"><span class="keyword">var</span> min = <span class="built_in">Math</span>.min(<span class="number">3</span>, <span class="number">54</span>, <span class="number">32</span>, <span class="number">-2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(max);<span class="comment">//54</span></span><br><span class="line"><span class="built_in">console</span>.log(min);<span class="comment">//-2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">-12</span>, <span class="number">12</span>, <span class="number">0</span>];</span><br><span class="line"><span class="keyword">var</span> maxArr = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>, arr);</span><br><span class="line"><span class="built_in">console</span>.log(maxArr);<span class="comment">//12</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-3-3-舍入方法"><a href="#8-3-3-舍入方法" class="headerlink" title="8.3.3 舍入方法"></a>8.3.3 舍入方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.ceil(<span class="number">25.9</span>));<span class="comment">//26</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.ceil(<span class="number">25.5</span>));<span class="comment">//26</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.ceil(<span class="number">25.1</span>));<span class="comment">//26</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.round(<span class="number">25.9</span>));<span class="comment">//26</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.round(<span class="number">25.5</span>));<span class="comment">//26</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.round(<span class="number">25.1</span>));<span class="comment">//25</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.floor(<span class="number">25.9</span>));<span class="comment">//25</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.floor(<span class="number">25.5</span>));<span class="comment">//25</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.floor(<span class="number">25.1</span>));<span class="comment">//25</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-3-4-random-方法"><a href="#8-3-4-random-方法" class="headerlink" title="8.3.4 random()方法"></a>8.3.4 random()方法</h3><p>返回大于等于0小于1的一个随机数</p>
+<p>从某个整数范围内随机选择一个值<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">值 = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*可能值的总数+第一个可能的值);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//随机选择一个1到10之间的数值</span></span><br><span class="line"><span class="keyword">var</span> num1 = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">10</span>+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//随机选择一个2到10之间的数值</span></span><br><span class="line"><span class="keyword">var</span> num2 = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random()*<span class="number">9</span>+<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params">lowerValue, upperValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> range = upperValue - lowerValue + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * range + lowerValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> num = random(<span class="number">2</span>, <span class="number">10</span>);</span><br><span class="line"><span class="built_in">console</span>.log(num);</span><br></pre></td></tr></table></figure>
+<p>随机取得数组中的一个项<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random</span>(<span class="params">lowerValue, upperValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> range = upperValue - lowerValue + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * range + lowerValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = [<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"yellow"</span>];</span><br><span class="line"><span class="keyword">var</span> color = arr[random(<span class="number">0</span>, arr.length - <span class="number">1</span>)];</span><br><span class="line"><span class="built_in">console</span>.log(color);</span><br></pre></td></tr></table></figure></p>
+<h3 id="8-3-5-其他方法"><a href="#8-3-5-其他方法" class="headerlink" title="8.3.5 其他方法"></a>8.3.5 其他方法</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">分割线</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Math.abs(num)</td>
+<td style="text-align:left">返回num的绝对值</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.asin(x)</td>
+<td style="text-align:left">返回x的反正弦值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.exp(num)</td>
+<td style="text-align:left">返回Math.E的num次幂</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.atan(x)</td>
+<td style="text-align:left">返回x的反正切值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.log(num)</td>
+<td style="text-align:left">返回num的自然对数</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.atan2(y, x)</td>
+<td style="text-align:left">返回y/x的反正切值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.pow(num, power)</td>
+<td style="text-align:left">返回num的power次幂</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.cos(x)</td>
+<td style="text-align:left">返回x的余弦值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.sqrt(num)</td>
+<td style="text-align:left">返回num的平方根</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.sin(x)</td>
+<td style="text-align:left">返回x的反正弦值</td>
+</tr>
+<tr>
+<td style="text-align:left">Math.acos(x)</td>
+<td style="text-align:left">返回x的反余弦值</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">Math.tan(x)</td>
+<td style="text-align:left">返回x的正切值</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/16/js的面向对象编程之创建对象二/" rel="next" title="js的面向对象编程之创建对象二（原型模式）">
+                <i class="fa fa-chevron-left"></i> js的面向对象编程之创建对象二（原型模式）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/22/js的引用类型之String类型/" rel="prev" title="js的引用类型之String类型">
+                js的引用类型之String类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-原生引用类型"><span class="nav-text">1. 原生引用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Object类型"><span class="nav-text">2. Object类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Array类型"><span class="nav-text">3. Array类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Date类型"><span class="nav-text">4. Date类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-RegExp类型"><span class="nav-text">5. RegExp类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Function类型"><span class="nav-text">6. Function类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-基本包装类型"><span class="nav-text">7. 基本包装类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-Boolean类型"><span class="nav-text">7.1 Boolean类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-Number类型"><span class="nav-text">7.2 Number类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-valueOf-toLocaleString-toString"><span class="nav-text">7.2.1 valueOf() toLocaleString() toString()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-toFixed-n"><span class="nav-text">7.2.2 toFixed(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-toExponential-n"><span class="nav-text">7.2.3 toExponential(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-4-toPrecision-n"><span class="nav-text">7.2.4 toPrecision(n)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-String类型"><span class="nav-text">7.3 String类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-单体内置对象"><span class="nav-text">8. 单体内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-概念"><span class="nav-text">8.1 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-Global"><span class="nav-text">8.2 Global</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-URI编码方法"><span class="nav-text">8.2.1 URI编码方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-eval-方法"><span class="nav-text">8.2.2 eval()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-Global对象的属性"><span class="nav-text">8.2.3 Global对象的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-4-window对象"><span class="nav-text">8.2.4 window对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-Math对象"><span class="nav-text">8.3 Math对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-Math对象的属性"><span class="nav-text">8.3.1 Math对象的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-min-和max-方法"><span class="nav-text">8.3.2 min()和max()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-3-舍入方法"><span class="nav-text">8.3.3 舍入方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-4-random-方法"><span class="nav-text">8.3.4 random()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-5-其他方法"><span class="nav-text">8.3.5 其他方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

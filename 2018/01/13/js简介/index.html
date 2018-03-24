@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="javascript简介与java没有任何关系，当时java很火，为了搭顺风车，就加个java JavaScript和ECMAScript的关系：ECMAScript是一种由Ecma国际前身为欧洲计算机制造商协会，英文名称是European Computer Manufacturers Association,制定的标准。Javascript是由公司开发而成的，公司开发的一定又一些问题，比如不便于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js简介">
+<meta property="og:url" content="http://yoursite.com/2018/01/13/js简介/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="javascript简介与java没有任何关系，当时java很火，为了搭顺风车，就加个java JavaScript和ECMAScript的关系：ECMAScript是一种由Ecma国际前身为欧洲计算机制造商协会，英文名称是European Computer Manufacturers Association,制定的标准。Javascript是由公司开发而成的，公司开发的一定又一些问题，比如不便于">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js简介">
+<meta name="twitter:description" content="javascript简介与java没有任何关系，当时java很火，为了搭顺风车，就加个java JavaScript和ECMAScript的关系：ECMAScript是一种由Ecma国际前身为欧洲计算机制造商协会，英文名称是European Computer Manufacturers Association,制定的标准。Javascript是由公司开发而成的，公司开发的一定又一些问题，比如不便于">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/13/js简介/"/>
+
+
+
+
+
+  <title>js简介 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/13/js简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-13T18:10:16+08:00">
+                2018-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="javascript简介"><a href="#javascript简介" class="headerlink" title="javascript简介"></a>javascript简介</h2><p>与java没有任何关系，当时java很火，为了搭顺风车，就加个java</p>
+<p>JavaScript和ECMAScript的关系：ECMAScript是一种由Ecma国际前身为欧洲计算机制造商协会，英文名称是European Computer Manufacturers Association,制定的标准。Javascript是由公司开发而成的，公司开发的一定又一些问题，比如不便于其他公司扩展和使用，所以欧洲的这个ECMA的组织，牵头制定JavaScript的标准，取名为ECMAScript。简单来说ECMAScript不是一门语言，而是一个标准。符合这个标准的常见语言有：JavaScript、Action Script(Flash)。</p>
+<p>ECMAScript再2015年6月发布了ECMAScript6版本，即ECMAScript2015<br><a id="more"></a><br>js是一种专为与网页交互设计的脚本语言，由三部分组成：</p>
+<ul>
+<li>ECMAScript -提供核心语言功能<ul>
+<li>语法</li>
+<li>类型</li>
+<li>语句</li>
+<li>关键字</li>
+<li>保留字</li>
+<li>操作符</li>
+<li>对象</li>
+</ul>
+</li>
+<li>文档对象模型（DOM） -提供访问和操作网页内容的方法和接口</li>
+<li>游览器对象模型（BOM） -提供与游览器交互的方法和接口<br>其编写的程序可以直接在游览其中<em>解释执行</em></li>
+</ul>
+<p>js文件写在<code>&lt;script&gt;&lt;/script&gt;</code>标签里面，这个标签放在哪里都行，一般放在<code>&lt;head&gt;&lt;/head&gt;</code>标签里面或者放在<code>&lt;/body&gt;</code>前面</p>
+<h2 id="lt-script-gt-lt-script-gt"><a href="#lt-script-gt-lt-script-gt" class="headerlink" title="&lt;script&gt;&lt;/script&gt;"></a><code>&lt;script&gt;&lt;/script&gt;</code></h2><h3 id="1-script-可选属性："><a href="#1-script-可选属性：" class="headerlink" title="1.script 可选属性："></a>1.<code>script</code> 可选属性：</h3><ul>
+<li>type<ul>
+<li>值：MIME-type -指示脚本的<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank">MIME类型</a></li>
+<li>例子：<code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code></li>
+</ul>
+</li>
+<li>async(HTML5)<ul>
+<li>值：async -规定异步执行脚本（仅适用于外部脚本）</li>
+<li>例子：<code>&lt;script async=&quot;async&quot;&gt;&lt;/script&gt;</code>-本相对于页面的其余部分异步地执行（当页面继续进行解析时，脚本将被执行）</li>
+</ul>
+</li>
+<li>charset<ul>
+<li>charset -规定在外部脚本文件中使用的字符编码</li>
+<li>例子：<code>&lt;script charset=utf-8&gt;&lt;/script&gt;</code></li>
+</ul>
+</li>
+<li>defer<ul>
+<li>defer -规定是否对脚本执行进行延迟，直到页面加载为止</li>
+<li>例子：<code>&lt;script defer=&quot;defer&quot; src=&quot;https://cdn.bootcss.com/jquery/3.2.1/jquery.js&quot;&gt;&lt;/script&gt;</code> -加载的jquery延迟执行，等整个页面加载完成之后，这个js再执行</li>
+</ul>
+</li>
+<li>src<ul>
+<li>URL -规定外部脚本文件的URL</li>
+<li>例子：见上，就是加载外部js文件</li>
+</ul>
+</li>
+<li>xml:space<ul>
+<li>preserve -规定是否保留代码中的空白</li>
+<li>例子：<code>&lt;script xml:space=&quot;preserve&quot;&gt;</code></li>
+<li>不常用<del>我不会</del></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>如果既不使用 async 也不使用 defer：在浏览器继续解析页面之前，立即读取并执行脚本</p>
+</blockquote>
+<h3 id="2-lt-script-gt-的一些问题"><a href="#2-lt-script-gt-的一些问题" class="headerlink" title="2.&lt;script&gt;的一些问题"></a>2.<code>&lt;script&gt;</code>的一些问题</h3><ul>
+<li><p>再代码中直接使用<code>&lt;/script&gt;</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">//alert("&lt;/script&gt;")//这样控制台会报错，代码直接执行到这一行结束</span></span><br><span class="line">alert(<span class="string">"&lt;\/script&gt;"</span>)<span class="comment">//使用转义符号'\'解决</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&lt;noscript&gt;&lt;/noscript&gt;</code>:只在1.游览器不支持脚本。2.游览器支持脚本，但脚本被禁用时，<code>noscript</code>标签内的内容才显示</p>
+</li>
+<li>在XHTML中使用js<ul>
+<li>在XHTML中，<code>&lt;</code>会被解析成开始一个新标签，所以可以使用<code>&amp;lt</code>来代替,其他同理</li>
+<li>另一种是使用CData片段来包含js代码<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;<span class="xml">&lt;![CDATA[</span></span><br><span class="line"><span class="xml">    function compare(a,b)&#123;</span></span><br><span class="line">        if(a&lt;b)&#123;</span><br><span class="line">            alert('a小');</span><br><span class="line">        &#125;else if(a&gt;b)&#123;</span><br><span class="line">            alert('b小')</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert('相等');</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="xml">]]&gt;<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="helloworld-demo"><a href="#helloworld-demo" class="headerlink" title="helloworld demo"></a>helloworld demo</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//游览器对象</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.alert(<span class="string">"Hello World!"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//文档对象</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">document</span>.write(<span class="string">"hello world!"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">        <span class="comment">//把内容打印到控制台</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.info(<span class="string">'HELLO WORLD!'</span>);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/vuejs2@v-on/" rel="next" title="v-on">
+                <i class="fa fa-chevron-left"></i> v-on
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/15/js的数据类型/" rel="prev" title="js的数据类型">
+                js的数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript简介"><span class="nav-text">javascript简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-script-gt-lt-script-gt"><span class="nav-text">&lt;script&gt;&lt;/script&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-script-可选属性："><span class="nav-text">1.script 可选属性：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-lt-script-gt-的一些问题"><span class="nav-text">2.&lt;script&gt;的一些问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld-demo"><span class="nav-text">helloworld demo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

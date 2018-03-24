@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="类的概念两种形式第一种，工厂模型形式12345678910111213function createPerson(name,sex,age) &amp;#123;    var obj = new Object();    obj.name = name;    obj.sex = sex;    obj.age = age;    obj.say = function()&amp;#123;        co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js面向对象类">
+<meta property="og:url" content="http://yoursite.com/2018/02/24/js面向对象类/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="类的概念两种形式第一种，工厂模型形式12345678910111213function createPerson(name,sex,age) &amp;#123;    var obj = new Object();    obj.name = name;    obj.sex = sex;    obj.age = age;    obj.say = function()&amp;#123;        co">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.857Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js面向对象类">
+<meta name="twitter:description" content="类的概念两种形式第一种，工厂模型形式12345678910111213function createPerson(name,sex,age) &amp;#123;    var obj = new Object();    obj.name = name;    obj.sex = sex;    obj.age = age;    obj.say = function()&amp;#123;        co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/24/js面向对象类/"/>
+
+
+
+
+
+  <title>js面向对象类 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/24/js面向对象类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js面向对象类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T20:10:16+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="类的概念"><a href="#类的概念" class="headerlink" title="类的概念"></a>类的概念</h1><h1 id="两种形式"><a href="#两种形式" class="headerlink" title="两种形式"></a>两种形式</h1><h2 id="第一种，工厂模型形式"><a href="#第一种，工厂模型形式" class="headerlink" title="第一种，工厂模型形式"></a>第一种，工厂模型形式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name,sex,age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    obj.name = name;</span><br><span class="line">    obj.sex = sex;</span><br><span class="line">    obj.age = age;</span><br><span class="line">    obj.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = createPerson(<span class="string">'alice'</span>,<span class="string">'female'</span>,<span class="number">18</span>);</span><br><span class="line">p1.say();</span><br></pre></td></tr></table></figure>
+<h2 id="第二种，构造函数式"><a href="#第二种，构造函数式" class="headerlink" title="第二种，构造函数式"></a>第二种，构造函数式</h2><blockquote>
+<p>函数的第一个字母大写，约定俗成认为是一个类的模板</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age,sex</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    <span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'jack'</span>,<span class="number">18</span>,<span class="string">'male'</span>);</span><br><span class="line">p.say();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p <span class="keyword">instanceof</span> Person);</span><br></pre></td></tr></table></figure>
+<p>创建对象实例的方式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接上述代码</span></span><br><span class="line"><span class="comment">//创建对象的方式：</span></span><br><span class="line"><span class="comment">//1当作构造函数使用</span></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'jack'</span>,<span class="number">18</span>,<span class="string">'male'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2作为普通函数去调用</span></span><br><span class="line"><span class="comment">//在全局环境下定义属性并赋值，直接定义在window上</span></span><br><span class="line">Person(<span class="string">'jack'</span>,<span class="number">18</span>,<span class="string">'male'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3在另一个对象的作用域中调用</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>;</span><br><span class="line">Person.call(obj,<span class="string">'jack'</span>,<span class="number">18</span>,<span class="string">'male'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj.name);</span><br></pre></td></tr></table></figure></p>
+<h1 id="prototype原型"><a href="#prototype原型" class="headerlink" title="prototype原型"></a>prototype原型</h1><p><del>概念</del></p>
+<h1 id="Object-getPrototypeof-根据实例对象获得原型对象"><a href="#Object-getPrototypeof-根据实例对象获得原型对象" class="headerlink" title="Object.getPrototypeof():根据实例对象获得原型对象"></a>Object.getPrototypeof():根据实例对象获得原型对象</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'jack'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">18</span>;</span><br><span class="line">Person.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(p1.name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> prototypeObj = <span class="built_in">Object</span>.getPrototypeOf(p1);</span><br><span class="line"><span class="built_in">console</span>.log(prototypeObj);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person();</span><br><span class="line">p2.name = <span class="string">'alice'</span>;</span><br><span class="line"><span class="comment">//delete p2.name;</span></span><br><span class="line"><span class="built_in">console</span>.log(p2.name);</span><br></pre></td></tr></table></figure>
+<p>判断一个对象属性是属于原型属性还是属于实例属性<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//接上述代码</span></span><br><span class="line"><span class="keyword">var</span> p3 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(p3.hasOwnPrototype(<span class="string">'name'</span>));</span><br></pre></td></tr></table></figure></p>
+<h1 id="in-判断属性是否存在实例对象和原型对象中"><a href="#in-判断属性是否存在实例对象和原型对象中" class="headerlink" title="in:判断属性是否存在实例对象和原型对象中"></a>in:判断属性是否存在实例对象和原型对象中</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'jack'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> p1);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person();</span><br><span class="line">p2.name = <span class="string">'alice'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> p2);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检测是否是原型对象的属性</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">obj,attr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !obj.hasOwnProperty(attr) &amp;&amp; attr <span class="keyword">in</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="comment">//Person.prototype.name = 'jack';</span></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">p1.name = <span class="string">'jack'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> z = test(p1,<span class="string">'name'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(z);</span><br></pre></td></tr></table></figure>
+<h1 id="ecma5-Object-keys-拿到当前对象的所有keys，返回一个数组"><a href="#ecma5-Object-keys-拿到当前对象的所有keys，返回一个数组" class="headerlink" title="ecma5  Object.keys();拿到当前对象的所有keys，返回一个数组"></a>ecma5  Object.keys();拿到当前对象的所有keys，返回一个数组</h1><p>在ecma5中，<code>constructor</code>属性是不能被枚举的<br><br><code>Object.getOwnPropertyNames</code>的作用就是枚举对象所有的属性，不管该内部属性能否被枚举</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Person.prototype.name = <span class="string">'jack'</span>;</span><br><span class="line">Person.prototype.age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">p1.sex = <span class="string">'male'</span>;</span><br><span class="line"><span class="keyword">var</span> attr = <span class="built_in">Object</span>.keys(p1);</span><br><span class="line"><span class="built_in">console</span>.log(attr);<span class="comment">//输出['sex']</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr2 = <span class="built_in">Object</span>.keys(Person.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(attr2);<span class="comment">//输出['name','age']</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr3 = <span class="built_in">Object</span>.getOwnPropertyNames(Person.prototype);</span><br><span class="line"><span class="built_in">console</span>.log(attr3);<span class="comment">//输出["constructor", "name", "age"]</span></span><br></pre></td></tr></table></figure>
+<h1 id="demo-each方法实现"><a href="#demo-each方法实现" class="headerlink" title="demo  each方法实现"></a>demo  each方法实现</h1><p>功能：遍历数组，包括多维数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,[<span class="number">5</span>,<span class="number">6</span>,[<span class="number">7</span>,<span class="number">8</span>]]];</span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.prototype.each = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//目的是遍历数组每一项，则做一个计数器，记录当前遍历元素的位置</span></span><br><span class="line">        <span class="keyword">this</span>.i || (<span class="keyword">this</span>.i = <span class="number">0</span>);<span class="comment">//this就是arr,arr.i是否存在，如果不存在，则this.i初始化为0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.length&gt;<span class="number">0</span> &amp;&amp; fn.constructor == <span class="built_in">Function</span>) &#123;<span class="comment">//数组存在并且传进的fn是函数</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//循环遍历数组的每一项</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//for(i in this) &#123;&#125;</span></span><br><span class="line">            <span class="comment">//在写底层代码的时候，能不用for in循环就不要用for in循环</span></span><br><span class="line">            <span class="comment">//如果代码结构层次深了，然后i和其他代码冲突了，会使得代码抛机</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">this</span>.i &lt; <span class="keyword">this</span>.length) &#123;</span><br><span class="line">                <span class="comment">//核心代码</span></span><br><span class="line">                <span class="keyword">var</span> e = <span class="keyword">this</span>[<span class="keyword">this</span>.i];</span><br><span class="line">                <span class="keyword">if</span>(e &amp;&amp; e.constructor == <span class="built_in">Array</span>) &#123;</span><br><span class="line">                    e.each(fn);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    fn.apply(e,[e]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//i到此已经完成使命</span></span><br><span class="line">            <span class="keyword">this</span>.i = <span class="literal">null</span>;<span class="comment">//释放内存，垃圾回收机制会处理</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(error)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">arr.each(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><del>for in循环的作用域了解一下以及所有的循环</del></p>
+<h1 id="ecma5-Object-defineproperty"><a href="#ecma5-Object-defineproperty" class="headerlink" title="ecma5 Object.defineproperty();"></a>ecma5 Object.defineproperty();</h1><p>三个参数：1.重设构造器的对象。 2.设置什么属性。 3.options配置项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">Person.prototype = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    name:<span class="string">'jack'</span>,</span><br><span class="line">    say:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'hi'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(Person.prototype,<span class="string">'constructor'</span>,&#123;</span><br><span class="line">    enumerable:<span class="literal">false</span>,</span><br><span class="line">    value:Person</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person</span><br><span class="line"><span class="keyword">for</span>(attr <span class="keyword">in</span> p1)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(attr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="原型的动态特性"><a href="#原型的动态特性" class="headerlink" title="原型的动态特性"></a>原型的动态特性</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">//原型对象的构造器默认为Person</span></span><br><span class="line">Person.prototype.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="built_in">console</span>.log(<span class="string">'hi'</span>)&#125;;</span><br><span class="line">p1.say();<span class="comment">//输出hi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>:Person,</span><br><span class="line">    say:function()&#123;<span class="built_in">console</span>.log(<span class="string">'hi'</span>)&#125;</span><br><span class="line">&#125;;</span><br><span class="line">p1.say();<span class="comment">//报错p1.say is not a function</span></span><br></pre></td></tr></table></figure>
+<h1 id="原型概念"><a href="#原型概念" class="headerlink" title="原型概念"></a>原型概念</h1><p>原型对象的所有属性和方法，被所有构造函数实例化出来的对象所共享</p>
+<p>原型对象虽然可以对所有的实例的属性和方法共享，但是它的局限性也是很明显的。</p>
+<p>我们一般组合使用构造函数式和原型模式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    <span class="keyword">constructor</span>:Person,</span><br><span class="line">    say:function()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'jack'</span>,<span class="number">18</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'alice'</span>,<span class="number">18</span>);</span><br><span class="line">p1.say();</span><br><span class="line">p2.say();</span><br></pre></td></tr></table></figure></p>
+<h1 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h1><h2 id="动态原型模式（代码封装到一起）"><a href="#动态原型模式（代码封装到一起）" class="headerlink" title="动态原型模式（代码封装到一起）"></a>动态原型模式（代码封装到一起）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//动态原型方法</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//一开始没有say方法，则生成；第二次有了就不用生成了</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.say != <span class="string">'function'</span>) &#123;</span><br><span class="line">        Person.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="稳妥构造函数式-（适合安全的环境中使用）"><a href="#稳妥构造函数式-（适合安全的环境中使用）" class="headerlink" title="稳妥构造函数式 （适合安全的环境中使用）"></a>稳妥构造函数式 （适合安全的环境中使用）</h2><p>没有公共属性，其他方法也不引用this对象。如果你的程序对于安全性要求很高，那么适合这种模式<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> name = name;</span><br><span class="line">    obj.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'name'</span>);</span><br><span class="line">p1.say();</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/23/js的引用类型之Date类型/" rel="next" title="js的引用类型之Date类型">
+                <i class="fa fa-chevron-left"></i> js的引用类型之Date类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/24/继承/" rel="prev" title="js的继承">
+                js的继承 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#类的概念"><span class="nav-text">类的概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两种形式"><span class="nav-text">两种形式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种，工厂模型形式"><span class="nav-text">第一种，工厂模型形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种，构造函数式"><span class="nav-text">第二种，构造函数式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#prototype原型"><span class="nav-text">prototype原型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-getPrototypeof-根据实例对象获得原型对象"><span class="nav-text">Object.getPrototypeof():根据实例对象获得原型对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-判断属性是否存在实例对象和原型对象中"><span class="nav-text">in:判断属性是否存在实例对象和原型对象中</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ecma5-Object-keys-拿到当前对象的所有keys，返回一个数组"><span class="nav-text">ecma5  Object.keys();拿到当前对象的所有keys，返回一个数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#demo-each方法实现"><span class="nav-text">demo  each方法实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ecma5-Object-defineproperty"><span class="nav-text">ecma5 Object.defineproperty();</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型的动态特性"><span class="nav-text">原型的动态特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型概念"><span class="nav-text">原型概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发模式"><span class="nav-text">开发模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态原型模式（代码封装到一起）"><span class="nav-text">动态原型模式（代码封装到一起）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稳妥构造函数式-（适合安全的环境中使用）"><span class="nav-text">稳妥构造函数式 （适合安全的环境中使用）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

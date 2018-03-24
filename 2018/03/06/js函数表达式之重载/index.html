@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="five00miles" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 重载的概念重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。这样做的好处是减少了函数或方法名的数量，避免了名字空间的污染。 2. 没有重载ECMAScript函数不能像传统意义上那样实现重载。而其他语言（如Java）中，可以为一个函数编写两个定义，只要这两个定义的签名（接受的参数的类型和数量）不同即可。而E">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js的函数表达式之重载">
+<meta property="og:url" content="http://yoursite.com/2018/03/06/js函数表达式之重载/index.html">
+<meta property="og:site_name" content="无能狂怒">
+<meta property="og:description" content="1. 重载的概念重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。这样做的好处是减少了函数或方法名的数量，避免了名字空间的污染。 2. 没有重载ECMAScript函数不能像传统意义上那样实现重载。而其他语言（如Java）中，可以为一个函数编写两个定义，只要这两个定义的签名（接受的参数的类型和数量）不同即可。而E">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T16:38:25.830Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js的函数表达式之重载">
+<meta name="twitter:description" content="1. 重载的概念重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。这样做的好处是减少了函数或方法名的数量，避免了名字空间的污染。 2. 没有重载ECMAScript函数不能像传统意义上那样实现重载。而其他语言（如Java）中，可以为一个函数编写两个定义，只要这两个定义的签名（接受的参数的类型和数量）不同即可。而E">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/06/js函数表达式之重载/"/>
+
+
+
+
+
+  <title>js的函数表达式之重载 | 无能狂怒</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">无能狂怒</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/js函数表达式之重载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FIVE00MILES">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="无能狂怒">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js的函数表达式之重载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T11:10:16+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-重载的概念"><a href="#1-重载的概念" class="headerlink" title="1. 重载的概念"></a>1. 重载的概念</h1><p>重载，简单说，就是函数或者方法有相同的名称，但是参数列表不相同的情形，这样的同名不同参数的函数或者方法之间，互相称之为重载函数或者方法。这样做的好处是减少了函数或方法名的数量，避免了名字空间的污染。</p>
+<h1 id="2-没有重载"><a href="#2-没有重载" class="headerlink" title="2. 没有重载"></a>2. 没有重载</h1><p>ECMAScript函数<strong>不能像传统意义上那样实现重载</strong>。而其他语言（如Java）中，可以为一个函数编写两个定义，只要这两个定义的签名（接受的参数的类型和数量）不同即可。而ECMAScript函数没有签名，因为其参数是由包含零或多个值的数组来表示的。而没有函数签名，<strong>真正的重载是不可能做到的</strong>。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> num + <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> rst = add(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(rst);<span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<p>如果在ECMAScript中定义了两个名字相同的函数，则该名字只属于后定义的函数。</p>
+<h1 id="3-模仿重载"><a href="#3-模仿重载" class="headerlink" title="3. 模仿重载"></a>3. 模仿重载</h1><p>通过检测传入函数中的类型和数量并做出不同的反应，可以模仿方法的重载。</p>
+<h2 id="3-1-简单的思路"><a href="#3-1-简单的思路" class="headerlink" title="3.1 简单的思路"></a>3.1 简单的思路</h2><p>根据arguments.length值的不同执行不同的操作<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">a,b...</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(<span class="built_in">arguments</span>.length) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">            <span class="comment">//操作1的代码</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">            <span class="comment">//操作2的代码</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="comment">//操作3的代码</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-2-利用闭包"><a href="#3-2-利用闭包" class="headerlink" title="3.2 利用闭包"></a>3.2 利用闭包</h2><p>出处JQuery之父John Resig的《secrets of Javascript ninja》</p>
+<p>加入有这样一个需求，有一个people对象，里面存着一些人名<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people = &#123;</span><br><span class="line">    values: [<span class="string">"张 三"</span>, <span class="string">"李 四"</span>, <span class="string">"王 五"</span>, <span class="string">"赵六"</span>,];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>我希望对people实现一个find方法。<br><br>不传任何参数时，就把people.values里面的所有元素返回来；<br>当传一个参数时，就把 符合的姓 返回来；<br>当传两个参数时，就把 符合的姓名 都返回来；</p>
+<p>这个find方法是根据参数的个数不同而执行不同的操作的（也就是需要实现重载），所以希望有一个addMethod方法，能够为people添加find重载<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">addMethod(people, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;);</span><br><span class="line">addMethod(people, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;&#125;);</span><br><span class="line">addMethod(people, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>实现addMethod方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMethod</span>(<span class="params">object, name, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> old = object[name];<span class="comment">///把前一次添加的方法存在一个临时变量old里面</span></span><br><span class="line">    object[name] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//如果调用object[name]方法时，传入的参数个数跟预期的一直，则直接调用</span></span><br><span class="line">        <span class="keyword">if</span>(fn.length === <span class="built_in">arguments</span>.length) &#123;<span class="comment">//传入的形参和实参一样</span></span><br><span class="line">            <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            <span class="comment">//否则，判断old是否是函数，如果是，就调用</span></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">typeof</span> old === <span class="string">"function"</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> old.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面这个addMethod能稍微改善只绑定单个函数时的性能问题<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMethod</span>(<span class="params">object, name, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> old = object[name];<span class="comment">///把前一次添加的方法存在一个临时变量old里面</span></span><br><span class="line">    <span class="keyword">if</span>(old) &#123;</span><br><span class="line">        object[name] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">//如果调用object[name]方法时，传入的参数个数跟预期的一直，则直接调用</span></span><br><span class="line">            <span class="keyword">if</span>(fn.length === <span class="built_in">arguments</span>.length) &#123;<span class="comment">//传入的形参和实参一样</span></span><br><span class="line">                <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">                <span class="comment">//否则，判断old是否是函数，如果是，就调用</span></span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">typeof</span> old === <span class="string">"function"</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> old.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;     </span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        object[name] = fn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用addMethod的方法<br>第一种，你可以将find函数直接添加到每个对象实例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">firstName</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种，你可以将find函数添加到对象的prototype，这样所有对象实例将共享find函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    addMethod(People.prototype, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">    addMethod(People.prototype, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">firstName</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">    addMethod(People.prototype, <span class="string">"find"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//执行代码</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>全部代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMethod</span>(<span class="params">object, name, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> old = object[name];</span><br><span class="line"></span><br><span class="line">    object[name] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">//如果调用object[name]方法时，传入的参数个数跟预期的一直，则直接调用</span></span><br><span class="line">        <span class="keyword">if</span>(fn.length === <span class="built_in">arguments</span>.length) &#123;<span class="comment">//传入的形参和实参一样</span></span><br><span class="line">            <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">typeof</span> old === <span class="string">"function"</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> old.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//--</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find0</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.values;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find1</span>(<span class="params">firstName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rst = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.values.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.values[i].indexOf(firstName) === <span class="number">0</span>) &#123;</span><br><span class="line">            rst.push(<span class="keyword">this</span>.values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rst;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find2</span>(<span class="params">firstName, lastName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> rst = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.values.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.values[i] === (firstName + <span class="string">" "</span> + lastName)) &#123;</span><br><span class="line">            rst.push(<span class="keyword">this</span>.values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> rst;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//--</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, find0);</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, find1);</span><br><span class="line">    addMethod(<span class="keyword">this</span>, <span class="string">"find"</span>, find2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myPeople = <span class="keyword">new</span> People();</span><br><span class="line">myPeople.values = [<span class="string">"张 三"</span>, <span class="string">"李 四"</span>, <span class="string">"王 五"</span>, <span class="string">"赵 六"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(myPeople.find());</span><br><span class="line"><span class="built_in">console</span>.log(myPeople.find(<span class="string">"张"</span>));</span><br><span class="line"><span class="built_in">console</span>.log(myPeople.find(<span class="string">"李"</span>, <span class="string">"四"</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-2-1-缺陷"><a href="#3-2-1-缺陷" class="headerlink" title="3.2.1 缺陷"></a>3.2.1 缺陷</h3><ul>
+<li>3.2的重载只能处理输入参数个数不同的情况，它不能区分参数的类型、名称等其他要素。</li>
+<li>重载过的函数将会有一些额外的负载，对于性能有要求比较高的应用，使用这个方法要慎重。</li>
+</ul>
+<h2 id="3-3-整理"><a href="#3-3-整理" class="headerlink" title="3.3 整理"></a>3.3 整理</h2><p>这个程序的难点在于myPeople.find事实上只能绑定一个函数。之所以能够处理3中不同的输入的关键在于<strong>old属性</strong>。</p>
+<p>由addMethod函数的调用顺序可知，myPeople.find最终绑定的时find2函数。然而在绑定find2时，old为find1;同理，绑定find1时，old为find0。3个函数fond0,find1,find2就专业那个通过闭包连接起来了。</p>
+<p>根据addMethod的逻辑，当fn.length和arguments.length不匹配时，就会去调用old，直到匹配为止。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/25/js的正则二/" rel="next" title="js的引用类型之RegExp正则类型（正则二）">
+                <i class="fa fa-chevron-left"></i> js的引用类型之RegExp正则类型（正则二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/13/移动端rem适配/" rel="prev" title="移动端适配利器——rem">
+                移动端适配利器——rem <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p287bv3zz.bkt.clouddn.com/blog/180311/lfCHHgbb6K.png?imageslim"
+                alt="FIVE00MILES" />
+            
+              <p class="site-author-name" itemprop="name">FIVE00MILES</p>
+              <p class="site-description motion-element" itemprop="description">JAVASCRIPT  |  NODEJS  |  JAVA</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/five00miles" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://shitgamer.cn" target="_blank" title="Demo">
+                      
+                        <i class="fa fa-fw fa-google"></i>Demo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-重载的概念"><span class="nav-text">1. 重载的概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-没有重载"><span class="nav-text">2. 没有重载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-模仿重载"><span class="nav-text">3. 模仿重载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-简单的思路"><span class="nav-text">3.1 简单的思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-利用闭包"><span class="nav-text">3.2 利用闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-缺陷"><span class="nav-text">3.2.1 缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-整理"><span class="nav-text">3.3 整理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FIVE00MILES</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
